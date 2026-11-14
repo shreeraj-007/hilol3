@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Earth System Trend Detective</title>
+  <meta name="description" content="Explore 20 years of NASA Earth science data from 23 of the planet's most extreme places, and find out which changes are statistically significant. A 2026 NASA Space Apps Challenge project.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='%232a78d6'/%3E%3Cpath d='M6 20 L12 14 L17 17 L26 8' stroke='%23f5b400' stroke-width='3' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true"></span>Trend Detective</a>
+    <nav aria-label="Main">
+      <ul>
+        <li><a class="link" href="#question">The question</a></li>
+        <li><a class="link" href="#method">How it works</a></li>
+        <li><a class="link" href="#cases">Case files</a></li>
+        <li><a class="link" href="#glossary">Glossary</a></li>
+        <li><a class="link" href="#limits">Limits</a></li>
+        <li><a class="link cta" href="explore.html">Open the explorer</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <!-- HERO -->
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="stars" aria-hidden="true"></div>
+    <div class="wrap">
+      <div>
+        <span class="hero-tag">2026 NASA Space Apps Challenge</span>
+        <h1 id="hero-title">Be an Earth System <span>Trend Detective</span></h1>
+        <p class="lede">We pulled two decades of NASA satellite and model data for some of the hottest, wettest, windiest and highest places on Earth. Pick a variable and a place, watch how it has changed month by month, and test whether the change is real or just noise.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="explore.html">Start investigating →</a>
+          <a class="btn btn-ghost" href="#cases">See example case files</a>
+        </div>
+        <div class="facts" aria-label="Project at a glance">
+          <div class="fact"><b data-fact="variables">9</b><span>Earth science variables</span></div>
+          <div class="fact"><b data-fact="series">23</b><span>locations analysed</span></div>
+          <div class="fact"><b data-fact="years">2006–2026</b><span>monthly records</span></div>
+          <div class="fact"><b data-fact="significant">–</b><span>statistically significant trends</span></div>
+        </div>
+      </div>
+      <div class="planet-wrap" aria-hidden="true">
+        <div class="planet"></div>
+        <svg viewBox="0 0 400 400">
+          <ellipse cx="200" cy="200" rx="196" ry="70" fill="none" stroke="rgba(127,196,255,.35)" stroke-width="1.5" transform="rotate(-18 200 200)"/>
+          <polyline points="30,250 70,232 100,246 140,214 180,226 220,190 260,204 300,170 340,178 372,150" fill="none" stroke="#f5b400" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="372" cy="150" r="6" fill="#f5b400"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUESTION -->
+  <section id="question" class="section-white" aria-labelledby="q-title">
+    <div class="wrap">
+      <p class="eyebrow">The question</p>
+      <h2 id="q-title">Is this place really changing, and by how much?</h2>
+      <p class="lede">Earth is always changing. When a measured quantity keeps moving in one direction (warmer, wetter, windier) we call that a <strong>trend</strong>. But the same variable can trend up in one region and down in another, even when the same process drives both. And real trends hide behind huge natural swings, like summer and winter.</p>
+      <div class="grid-3" style="margin-top:32px">
+        <div class="card">
+          <h3>What is changing?</h3>
+          <p class="muted">Nine variables, from air temperature and rainfall to soil wetness, cloud cover, humidity, wind and air pressure. Each one comes with a plain-language definition and a note on how NASA measures it.</p>
+        </div>
+        <div class="card">
+          <h3>Where is it changing?</h3>
+          <p class="muted">We chose record-breaking "benchmark" places, such as Death Valley, the Dead Sea, Mount Everest and the wettest place on Earth, so each variable is studied where it is most extreme.</p>
+        </div>
+        <div class="card">
+          <h3>How much, and is it significant?</h3>
+          <p class="muted">For every place we measure the rate of change per year and run a statistical test that asks whether a trend that size could easily have appeared by chance.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- METHOD -->
+  <section id="method" class="section-dark" aria-labelledby="m-title">
+    <div class="wrap">
+      <p class="eyebrow">How it works</p>
+      <h2 id="m-title">From raw data to a verdict in four steps</h2>
+      <p class="lede">Every chart in the explorer goes through the same analysis, written in Python with pandas and SciPy.</p>
+      <ol class="grid-4" style="list-style:none;padding:0;margin:32px 0 0">
+        <li class="card">
+          <div class="step-num">1</div>
+          <h3>Collect</h3>
+          <p class="muted">One monthly time series per location, January 2006 to January 2026, downloaded as CSV.</p>
+        </li>
+        <li class="card">
+          <div class="step-num">2</div>
+          <h3>Clean</h3>
+          <p class="muted">Months flagged as missing (−9999) are removed. Up to two missing months in a row are filled in from their neighbours; any still missing are dropped.</p>
+        </li>
+        <li class="card">
+          <div class="step-num">3</div>
+          <h3>Remove the seasons</h3>
+          <p class="muted">We subtract the long-term average for each calendar month. What is left, the <em>anomaly</em>, shows whether a month was above or below normal for that time of year.</p>
+        </li>
+        <li class="card">
+          <div class="step-num">4</div>
+          <h3>Test the trend</h3>
+          <p class="muted">A straight line is fitted through the anomalies (linear regression). Its slope is the rate of change; a t-test on the slope gives a p-value, and p &lt; 0.05 counts as significant.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- CASE FILES -->
+  <section id="cases" aria-labelledby="c-title">
+    <div class="wrap">
+      <p class="eyebrow">Demonstration case files</p>
+      <h2 id="c-title">Three investigations to get you started</h2>
+      <p class="lede">Each case file opens the explorer with the variable and place already selected, so you can see how the tool works before starting your own investigation.</p>
+      <div class="grid-3" style="margin-top:32px">
+        <article class="card case">
+          <span class="tag">Case 01 · Root zone soil wetness</span>
+          <h3>Same variable, opposite directions</h3>
+          <p class="muted">Two of the world's great wetlands, the Pantanal in South America and the Sudd in South Sudan, are both measured for root zone soil wetness. Do they change the same way?</p>
+          <p class="verdict" data-case="RootZoneSoil_Pantanal,RootZoneSoil_Sudd"></p>
+          <a class="btn" href="explore.html?series=RootZoneSoil_Pantanal">Open case file</a>
+        </article>
+        <article class="card case">
+          <span class="tag">Case 02 · Near-surface air temperature</span>
+          <h3>Warming in the hottest places</h3>
+          <p class="muted">Furnace Creek holds the world record for the hottest air temperature, and Dallol has the hottest year-round average. Is either getting hotter?</p>
+          <p class="verdict" data-case="NearSurfaceAirTemperature_Furnace,NearSurfaceAirTemperature_Dallol"></p>
+          <a class="btn" href="explore.html?series=NearSurfaceAirTemperature_Furnace">Open case file</a>
+        </article>
+        <article class="card case">
+          <span class="tag">Case 03 · Surface wind speed</span>
+          <h3>When the answer is "not significant"</h3>
+          <p class="muted">Some of Earth's windiest spots swing wildly from month to month. A detective has to know when the evidence is not strong enough to call a trend.</p>
+          <p class="verdict" data-case="SurfaceWindSpeed_Barrow,SurfaceWindSpeed_Denison,SurfaceWindSpeed_Southcol"></p>
+          <a class="btn" href="explore.html?series=SurfaceWindSpeed_Southcol">Open case file</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- GLOSSARY -->
+  <section id="glossary" class="section-white" aria-labelledby="g-title">
+    <div class="wrap">
+      <p class="eyebrow">Detective's glossary</p>
+      <h2 id="g-title">The words you'll see in the explorer</h2>
+      <dl class="glossary" style="margin-top:28px">
+        <div><dt>Trend</dt><dd>A steady, long-term change in one direction, such as rising or falling, that continues underneath the short-term ups and downs.</dd></div>
+        <div><dt>Anomaly</dt><dd>How far a month's value is above (+) or below (−) the usual value for that calendar month. Using anomalies removes the regular summer–winter cycle so a trend isn't hidden by the seasons.</dd></div>
+        <div><dt>Rate of change</dt><dd>The slope of the best-fit straight line: how much the variable changes per year on average, in the variable's own units (for example kelvin per year).</dd></div>
+        <div><dt>Linear regression</dt><dd>A method that draws the single straight line that fits the data points as closely as possible. The dashed orange line in each chart.</dd></div>
+        <div><dt>p-value</dt><dd>If there were really no trend, how likely is it that random month-to-month noise would produce a slope at least this steep? A small p-value means "unlikely to be chance alone."</dd></div>
+        <div><dt>Statistically significant</dt><dd>We call a trend significant when p &lt; 0.05, meaning less than a 5% chance that noise alone would produce it. Significant does not mean large or important. Not significant does not prove there is no change.</dd></div>
+        <div><dt>95% confidence interval</dt><dd>A range of plausible values for the true rate of change. If the whole range is above zero (or below zero), the direction of the trend is clear.</dd></div>
+        <div><dt>R² (R-squared)</dt><dd>The share of the month-to-month variation that the straight line explains, from 0 to 1. A trend can be significant even when R² is small, because over 240 months even a gentle slope adds up.</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- LIMITS -->
+  <section id="limits" aria-labelledby="l-title">
+    <div class="wrap">
+      <p class="eyebrow">Read the fine print</p>
+      <h2 id="l-title">What these results can and cannot tell us</h2>
+      <div class="grid-3" style="margin-top:28px">
+        <div class="card">
+          <h3>They can tell us</h3>
+          <ul class="clean muted">
+            <li>Which direction each variable has moved at each place since 2006.</li>
+            <li>Roughly how fast, in real units per year.</li>
+            <li>Whether a straight-line trend stands out from the month-to-month noise.</li>
+            <li>That one variable can move in opposite directions in different regions.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>They cannot tell us</h3>
+          <ul class="clean muted">
+            <li><strong>Why</strong> something changed. A trend is a clue, not a cause.</li>
+            <li>What will happen next. Twenty years is short in climate terms, and trends can speed up, slow down or reverse.</li>
+            <li>About cycles or curved changes. We only test for straight-line trends.</li>
+            <li>Exactly what a ground station would read. Each series comes from satellite and model data for a location, which can differ from local measurements.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Things to keep in mind</h3>
+          <ul class="clean muted">
+            <li>Neighbouring months tend to resemble each other. The standard test assumes they don't, so p-values close to 0.05 should be treated with extra caution.</li>
+            <li>Some records have gaps. The explorer shows how many months were missing for each place.</li>
+            <li>A non-significant trend can become significant once a longer record is available.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-dark" aria-labelledby="cta-title">
+    <div class="wrap" style="text-align:center">
+      <h2 id="cta-title">Ready to open your own case?</h2>
+      <p class="lede" style="margin:0 auto 24px">Answer two quick questions (what to investigate and where) and the explorer will show you the evidence.</p>
+      <a class="btn btn-primary" href="explore.html">Open the explorer →</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p><strong style="color:#fff">Earth System Trend Detective</strong>, a response to the 2026 NASA Space Apps Challenge "Be an Earth System Trend Detective!"</p>
+    <p>Analysis code and raw CSV data: <a href="https://github.com/IshaanKedarPande/hilol">github.com/IshaanKedarPande/hilol</a>.</p>
+    <!-- TODO (team): add the exact data source / product names used for the CSVs and the team name. -->
+    <p class="muted">Data source: <em>[to be confirmed by the team: dataset / product names and download portal]</em></p>
+  </div>
+</footer>
+
+<script src="assets/common.js"></script>
+<script>
+  TD.load().then(({ results, content }) => {
+    const byId = Object.fromEntries(results.map(r => [r.id, r]));
+    const years = results.map(r => r.start.slice(0, 4)).sort()[0] + '–' + results.map(r => r.end.slice(0, 4)).sort().pop();
+    document.querySelector('[data-fact="variables"]').textContent = new Set(results.map(r => r.variable)).size;
+    document.querySelector('[data-fact="series"]').textContent = results.length;
+    document.querySelector('[data-fact="years"]').textContent = years;
+    document.querySelector('[data-fact="significant"]').textContent = results.filter(r => r.significant).length + ' of ' + results.length;
+
+    document.querySelectorAll('[data-case]').forEach(el => {
+      el.innerHTML = el.dataset.case.split(',').map(id => {
+        const r = byId[id]; if (!r) return '';
+        const v = content.variables[r.variable];
+        const place = content.locations[id]?.place || r.location;
+        return `<strong>${place}:</strong> ${TD.fmtRate(r.slope_per_year, v.unit)} · ${TD.verdictText(r)}`;
+      }).join('<br>');
+    });
+  }).catch(() => {});
+</script>
+</body>
+</html>
