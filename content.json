@@ -1,0 +1,228 @@
+{
+  "_note": "Text taken from 'Variables explanation.rtf' and 'Analysis of trends.rtf' (lightly edited for flow). Units are NOT stated in the CSV files; they are inferred from the value ranges and must be confirmed by the team (see README_WEBSITE.md). 'region' labels were added for geographic context.",
+  "categories": [
+    { "id": "temperature", "label": "Heat & temperature", "question": "Is it getting hotter or cooler?" },
+    { "id": "water", "label": "Water, soil & rain", "question": "Is the land getting wetter or drier?" },
+    { "id": "air", "label": "Air, clouds & wind", "question": "Is the atmosphere above a place changing?" }
+  ],
+  "variables": {
+    "AirTemperature": {
+      "name": "Air temperature (daily maximum)",
+      "short": "Air temperature",
+      "category": "temperature",
+      "unit": "K",
+      "unitLong": "kelvin (K)",
+      "definition": "Daily maximum air temperature is simply the hottest temperature reached by the shaded air about six feet off the ground during a single 24-hour day.",
+      "howMeasured": "NASA determines daily maximum air temperature by assimilating intermittent satellite sounder readings into physics-based atmospheric models (like GEOS and MERRA-2), which reconstruct the complete 24-hour heating curve to pinpoint each day's peak 2-metre air temperature."
+    },
+    "NearSurfaceAirTemperature": {
+      "name": "Near-surface air temperature",
+      "short": "Near-surface air temperature",
+      "category": "temperature",
+      "unit": "K",
+      "unitLong": "kelvin (K)",
+      "definition": "Near-surface air temperature is the temperature of the ambient air measured between 1.5 and 2 metres (roughly 5 to 6.5 feet) above the ground.",
+      "howMeasured": "NASA estimates near-surface air temperature by combining satellite heat and atmospheric readings with ground weather-station reports inside powerful global computer models."
+    },
+    "CloudAmount": {
+      "name": "Cloud amount (cloud fraction)",
+      "short": "Cloud amount",
+      "category": "air",
+      "unit": "fraction",
+      "unitLong": "fraction of sky covered (0 = clear, 1 = overcast)",
+      "definition": "Cloud amount (or cloud fraction) is the proportion of the visible sky covered by cloud, seen from a ground site or within a satellite grid footprint.",
+      "howMeasured": "NASA determines global cloud fraction using spaceborne optical and thermal radiometers (like MODIS on Terra and Aqua, and VIIRS) combined with space-based lidars and radars (such as CALIPSO and CloudSat) that map cloud brightness and heat emission against the ground below."
+    },
+    "RelativeHumidity": {
+      "name": "Relative humidity",
+      "short": "Relative humidity",
+      "category": "air",
+      "unit": "%",
+      "unitLong": "percent (%)",
+      "definition": "Relative humidity is the amount of water vapour actually in the air compared with the maximum the air could hold at the same temperature and pressure, expressed as a percentage.",
+      "howMeasured": "NASA determines relative humidity using satellite sounders (like AIRS and CrIS) that profile temperature and water vapour at the same time, then feeds both into global models (like MERRA-2) to compute how close the air is to saturation."
+    },
+    "RootZoneSoil": {
+      "name": "Root zone soil wetness",
+      "short": "Root zone soil wetness",
+      "category": "water",
+      "unit": "fraction",
+      "unitLong": "fraction of saturation (0 = dry, 1 = saturated)",
+      "definition": "Root zone soil wetness is the proportion of moisture held in the layer of soil where plant roots are active.",
+      "howMeasured": "NASA captures microwave signals from space with satellites like SMAP to detect moisture near the surface, then feeds those readings into land surface models that map how water is distributed down through the root zone."
+    },
+    "SurfaceSoilWetness": {
+      "name": "Surface soil wetness",
+      "short": "Surface soil wetness",
+      "category": "water",
+      "unit": "fraction",
+      "unitLong": "fraction of saturation (0 = entirely dry, 1 = completely saturated)",
+      "definition": "Surface soil wetness is the proportion of moisture in the top 5 centimetres (about 2 inches) of ground relative to the most it can store, on a scale from 0 (entirely dry) to 1 (completely saturated).",
+      "howMeasured": "NASA measures surface soil wetness primarily through the Soil Moisture Active Passive (SMAP) satellite mission, combining microwave sensing from space with retrieval algorithms."
+    },
+    "SurfacePressure": {
+      "name": "Surface pressure",
+      "short": "Surface pressure",
+      "category": "air",
+      "unit": "Pa",
+      "unitLong": "pascals (Pa)",
+      "definition": "Surface pressure is the weight (force) of the entire column of atmosphere pressing down on the ground or ocean surface below it.",
+      "howMeasured": "NASA derives surface pressure by measuring vertical temperature and moisture profiles with satellite sounders (such as AIRS), then combining those readings with precise surface-elevation data inside global models (like GEOS)."
+    },
+    "SurfaceWindSpeed": {
+      "name": "Surface wind speed",
+      "short": "Surface wind speed",
+      "category": "air",
+      "unit": "m/s",
+      "unitLong": "metres per second (m/s)",
+      "definition": "Surface wind speed is the speed of horizontal airflow at a reference height of 10 metres (about 33 feet) above the surface.",
+      "howMeasured": "NASA determines surface wind speed by measuring sea-surface roughness with radar scatterometers, and by feeding pressure patterns and satellite soundings into physics-based models (such as GEOS) that estimate 10-metre winds over land."
+    },
+    "TotalPrecipitationRate": {
+      "name": "Total precipitation rate",
+      "short": "Precipitation rate",
+      "category": "water",
+      "unit": "kg m⁻² s⁻¹",
+      "unitLong": "kilograms of water per square metre per second (kg m⁻² s⁻¹)",
+      "definition": "Total precipitation rate is the amount of all water, liquid and frozen, falling from the atmosphere and reaching the surface, per unit of area per unit of time.",
+      "howMeasured": "NASA measures precipitation globally using the dual-frequency radar and microwave imager on its flagship GPM satellite to profile falling rain and snow, calibrating a constellation of partner satellites and merging their observations into a unified, half-hourly global grid (IMERG)."
+    }
+  },
+  "locations": {
+    "AirTemperature_Oodnadatta": { "place": "Oodnadatta", "region": "Outback, Australia", "why": "A prime benchmark for extreme daily maximum air temperature, where intense Outback sunshine and bone-dry desert soils drove Australia's national record of 50.7 °C (123.3 °F)." },
+    "AirTemperature_Thar": { "place": "Thar Desert", "region": "South Asia", "why": "A subtropical benchmark for extreme daily maximum air temperature, where relentless pre-monsoon sunshine, low surface reflectivity and dry continental winds routinely push daytime temperatures above 50 °C (122 °F)." },
+    "CloudAmount_Bouvet": { "place": "Bouvet Island", "region": "Subantarctic South Atlantic", "why": "The subantarctic baseline for maximum cloud cover, where relentless circumpolar storm systems keep the isolated island under near-constant overcast and low mist." },
+    "CloudAmount_Nauru": { "place": "Nauru", "region": "Tropical western Pacific", "why": "A tropical benchmark for cloud fraction: its position in the Pacific Warm Pool makes it a key reference for deep convection and El Niño (ENSO) moisture variability." },
+    "NearSurfaceAirTemperature_Dallol": { "place": "Dallol", "region": "Danakil Depression, Ethiopia", "why": "Holds the historical record for the highest average year-round temperature on Earth." },
+    "NearSurfaceAirTemperature_Furnace": { "place": "Furnace Creek", "region": "Death Valley, USA", "why": "Holds the world record for the highest reliably measured air temperature (56.7 °C / 134 °F), a planetary benchmark for extreme dry heat." },
+    "RelativeHumidity_Monteverde": { "place": "Monteverde Cloud Forest", "region": "Costa Rica", "why": "An upper-bound benchmark for relative humidity, where persistent mountain mist keeps the air close to 100% saturation without extreme heat." },
+    "RelativeHumidity_Reyes": { "place": "Point Reyes", "region": "California coast, USA", "why": "A classic coastal benchmark for high relative humidity, where cold ocean water chills incoming air and triggers thick, near-saturated fog." },
+    "RootZoneSoil_Pantanal": { "place": "Pantanal Basin", "region": "Central South America", "why": "A high-end benchmark for root zone wetness, where seasonal river overflows flood low-lying plains and keep deep soil layers near saturation for months." },
+    "RootZoneSoil_Sudd": { "place": "The Sudd", "region": "White Nile wetlands, South Sudan", "why": "A baseline for maximum root zone wetness, where recurring White Nile overflows inundate wide clay basins and keep deep soil moisture high." },
+    "RootZoneSoil_Walnut": { "place": "Walnut Gulch", "region": "Semi-arid southwest USA", "why": "A benchmark site with an extensive network of ground instruments across a semi-arid basin, used to calibrate satellite soil-moisture retrievals." },
+    "SurfacePressure_DeadSea": { "place": "Dead Sea", "region": "Middle East", "why": "The high-pressure benchmark: at Earth's lowest exposed land (about 430 m below sea level) it sits under the tallest, heaviest column of air." },
+    "SurfacePressure_Everest": { "place": "Mount Everest", "region": "Himalaya", "why": "The baseline for minimum surface pressure: at about 8,849 m, nearly two-thirds of the atmosphere's mass lies below the summit." },
+    "SurfacePressure_Tosontsengel": { "place": "Tosontsengel", "region": "Mongolia", "why": "A benchmark for extreme pressure highs, where intense Siberian winter cold pools very dense air in an elevated valley." },
+    "SurfaceSoilWetness_Kuch": { "place": "Rann of Kutch", "region": "Western India", "why": "Vast salt marshes that swing from complete monsoon flooding to completely dry ground, an ideal test for surface soil wetness." },
+    "SurfaceSoilWetness_MonteBuey": { "place": "Monte Buey", "region": "Pampas, Argentina", "why": "A ground-sensor network across the flat Pampas farmland that provides gold-standard measurements to calibrate satellite soil-moisture retrievals." },
+    "SurfaceSoilWetness_Remedhus": { "place": "REMEDHUS network", "region": "Spain", "why": "A grid of ground sensors across flat Spanish farmland that supplies high-accuracy measurements to calibrate satellite soil-moisture retrievals." },
+    "SurfaceWindSpeed_Barrow": { "place": "Barrow Island", "region": "", "why": "A benchmark for extreme surface wind speed, where exposed coastal geography and intense tropical cyclones produced the highest non-tornado wind gust reliably recorded on Earth." },
+    "SurfaceWindSpeed_Denison": { "place": "Denison", "region": "", "why": "" },
+    "SurfaceWindSpeed_Southcol": { "place": "South Col", "region": "Mount Everest, Himalaya", "why": "The narrow saddle between Mount Everest and Lhotse funnels the jet stream into relentless hurricane-strength gales, a high-altitude baseline for maximum wind speed." },
+    "TotalPrecipitationRate_Mawsynram": { "place": "Mawsynram", "region": "Meghalaya, India", "why": "The wettest place on Earth, the real-world benchmark for testing satellite rainfall algorithms against extreme, intense mountain-driven tropical rain." },
+    "TotalPrecipitationRate_Tutunendo": { "place": "Tutunendo", "region": "Chocó, Colombia", "why": "A centre of near-constant, warm equatorial rainforest downpours with virtually no dry season, a benchmark for year-round convective rain." },
+    "TotalPrecipitationRate_Waialeale": { "place": "Mount Waiʻaleʻale", "region": "Kauaʻi, Hawaiʻi, USA", "why": "A benchmark for persistent trade-wind rain forced up the mountain, where warm-rain processes test whether satellites can detect heavy rain from shallow clouds that form without ice." }
+  },
+  "notes": {
+    "AirTemperature_Thar": {
+      "overview": "The data is highly volatile, with sharp, rapid back-and-forth swings around a steady zero mean.",
+      "pattern": "There is no distinct long-term upward or downward pattern visible by eye, but the swings become slightly more extreme from 2016 onward compared with 2006–2012.",
+      "extremes": "The largest positive variation reaches slightly above +6 near 2023; the largest negative drops reach roughly −4.5 around 2019 and again after 2024."
+    },
+    "AirTemperature_Oodnadatta": {
+      "overview": "Temperature variations bounce rapidly up and down around zero across the whole record, with wild and frequent swings.",
+      "pattern": "There is a recent shift: unlike the large positive (warmer) spikes between 2014 and 2016, the data from 2020 onwards shows more frequent negative (cooler) dips.",
+      "extremes": "The hottest spike reached nearly +7 around 2014, while the coldest drop hit roughly −5 near 2025."
+    },
+    "CloudAmount_Bouvet": {
+      "overview": "Cloud variations fluctuate continuously and rapidly around a steady zero baseline.",
+      "pattern": "There is no overall upward or downward pattern, but the variations are lopsided.",
+      "extremes": "Positive peaks (more cloud) are modest, reaching about +0.05 around 2009. Negative drops (less cloud) are sudden and large, plunging to roughly −0.11 near 2009 and −0.12 just after 2016."
+    },
+    "CloudAmount_Nauru": {
+      "overview": "Cloud amount swings in a broad, wave-like pattern across the two decades.",
+      "pattern": "Rather than constant rapid spikes, this series shows multi-year cycles, often spending a few years mostly above average followed by a few years mostly below.",
+      "extremes": "The sharpest drop occurred near 2008, bottoming out at roughly −0.35. The highest peaks approach +0.3, in 2007, 2019 and 2024."
+    },
+    "NearSurfaceAirTemperature_Dallol": {
+      "overview": "Temperature variations show a noticeable multi-year shifting pattern rather than just random noise.",
+      "pattern": "A cooler phase from the start of the record to 2012 (mostly negative variations) is followed by a sustained warmer phase from roughly 2013 to 2019. The 2020s return to a more volatile mix.",
+      "extremes": "The warmest spike reached nearly +2.5 around 2019; the deepest cold drops occurred around 2011 and after 2024, at about −2.2 and −2.7."
+    },
+    "NearSurfaceAirTemperature_Furnace": {
+      "overview": "Temperatures show dramatic, rapid swings with a visible shift in long-term momentum.",
+      "pattern": "Like Dallol, the early years (to 2011) were mostly cooler than average, while 2012–2020 shifted to a mostly warmer phase. The 2020s show extreme swings in both directions.",
+      "extremes": "The most intense cold drop plunged to −4.5 near 2010. The single hottest extreme comes at the very end of the record, near 2026, at nearly +5.0."
+    },
+    "RelativeHumidity_Monteverde": {
+      "overview": "Humidity variations fluctuate rapidly around a stable zero baseline over the 20-year period.",
+      "pattern": "Most of the record shows consistent, moderate swings between +5 and −5, but volatility increases sharply in the early 2020s.",
+      "extremes": "The most extreme variations occur back-to-back near 2024: a drop below −10 immediately followed by a spike approaching +10."
+    },
+    "RootZoneSoil_Pantanal": {
+      "overview": "Soil moisture variations are generally tight and slightly below average, broken up by sudden, extreme wet spikes.",
+      "pattern": "The record is relatively stable and lacks large wave-like cycles, apart from isolated flooding or wet events.",
+      "extremes": "A single, very large wet variation occurs near 2011, above +0.35. Dry variations are much shallower, bottoming out around −0.1."
+    },
+    "RootZoneSoil_Sudd": {
+      "overview": "Soil moisture shows clear multi-year cycles rather than constant rapid spikes.",
+      "pattern": "A mostly dry phase (negative variations) from the start of the record to about 2012 is followed by a sustained wet phase from 2013 to 2021.",
+      "extremes": "The lowest dips reach roughly −0.10 in the early years (2007, 2009); the highest peak exceeds +0.12 near 2021."
+    },
+    "RootZoneSoil_Walnut": {
+      "overview": "Soil moisture variations show distinct, repeating 3-to-5-year waves.",
+      "pattern": "There is no dominant long-term direction visible by eye; the data swings smoothly between multi-year wet and dry periods.",
+      "extremes": "The most prominent wet spike happens near 2020, reaching nearly +0.20, while the sharpest dry drop bottoms out around −0.10 near 2024."
+    },
+    "SurfacePressure_DeadSea": {
+      "overview": "Pressure variations oscillate rapidly around zero, with frequent, sharp reversals.",
+      "pattern": "The data stays highly volatile across both decades with no distinct long-term upward or downward pattern visible by eye.",
+      "extremes": "The highest spike reaches nearly +370 around 2016; the deepest drops fall just below −300 near 2010 and 2011."
+    },
+    "SurfacePressure_Everest": {
+      "overview": "Surface pressure swings rapidly and widely around a normal zero baseline.",
+      "pattern": "There is no dominant long-term direction visible by eye, though negative variations cluster briefly between 2010 and 2014.",
+      "extremes": "The largest positive spike is slightly above +200 around 2006, while a single very large drop falls past −300 near 2022."
+    },
+    "SurfacePressure_Tosontsengel": {
+      "overview": "Pressure variations are extremely volatile, with constant, sharp back-and-forth swings.",
+      "pattern": "There is no sustained long-term direction visible by eye, but large positive spikes appear slightly more often after 2016.",
+      "extremes": "The highest variation reaches nearly +550 around 2020; the deepest drops fall to roughly −500 near 2009 and 2011."
+    },
+    "SurfaceSoilWetness_Kuch": {
+      "overview": "Soil wetness shows frequent, jagged fluctuations that regularly cross zero over the 20-year span.",
+      "pattern": "The data cycles through multi-year wet and dry phases without a single overarching direction visible by eye.",
+      "extremes": "The wettest spike reaches roughly +0.25 near 2024; the driest drop bottoms out near −0.28 around 2019."
+    },
+    "SurfaceSoilWetness_MonteBuey": {
+      "overview": "Soil wetness shifts in broad, multi-year waves rather than constant rapid noise.",
+      "pattern": "The record moves through distinct phases, notably from a sustained wetter period (2014–2017) into a sustained drier period (2020–2024).",
+      "extremes": "The highest peak is near +0.12 around 2013; the deepest dip falls to roughly −0.15 around 2018."
+    },
+    "SurfaceSoilWetness_Remedhus": {
+      "overview": "Soil wetness fluctuates quickly and frequently back and forth across zero.",
+      "pattern": "There is no clear long-term upward or downward pattern visible by eye; the data keeps tight, frequent reversals.",
+      "extremes": "The largest wet spikes approach +0.10 near 2016 and 2022; the deepest single dry drop reaches −0.15 around 2018."
+    },
+    "SurfaceWindSpeed_Barrow": {
+      "overview": "Wind speed variations swing rapidly and frequently back and forth across a stable zero baseline.",
+      "pattern": "There is no distinct long-term upward or downward pattern visible by eye; volatility stays consistently high over the whole 20-year period.",
+      "extremes": "The highest peaks reach roughly +1.7 around 2011 and 2015; the deepest drops fall to near −1.75 around 2013 and 2020."
+    },
+    "SurfaceWindSpeed_Denison": {
+      "overview": "The data shows constant, rapid fluctuations that regularly cross zero.",
+      "pattern": "No clear long-term direction is visible by eye, though a few isolated, very extreme spikes stand out against otherwise steady background noise.",
+      "extremes": "The largest positive variation spikes to about +2.5 near 2018; the most extreme negative variation reaches −2.5 near 2006."
+    },
+    "SurfaceWindSpeed_Southcol": {
+      "overview": "Wind speed variations show a dense pattern of jagged reversals oscillating tightly around zero.",
+      "pattern": "The size of the swings stays fairly steady across the two decades, with no overarching long-term shift visible by eye.",
+      "extremes": "The highest peaks reach roughly +1.2 near 2008 and 2012; the lowest dips reach near −1.2 around 2021 and 2024."
+    },
+    "TotalPrecipitationRate_Mawsynram": {
+      "overview": "Precipitation variations show dramatic, frequent extremes, with constant large swings between wet and dry.",
+      "pattern": "There is no sustained long-term phase shift; the data keeps extreme, erratic volatility across the whole record.",
+      "extremes": "The highest peaks reach roughly +8.0 × 10⁻⁵ near 2007 and 2010; the deepest drops fall past −6.0 × 10⁻⁵ near 2009 and 2023."
+    },
+    "TotalPrecipitationRate_Tutunendo": {
+      "overview": "The data shows constant, volatile noise, with variations frequently crossing zero.",
+      "pattern": "While consistently erratic, the size of the swings noticeably increases at the very end of the record (after 2024).",
+      "extremes": "The single most intense wet spike comes at the end of the record near 2026, above +1.0 × 10⁻⁴; the deepest drops reach roughly −7.5 × 10⁻⁵ around 2010 and 2016."
+    },
+    "TotalPrecipitationRate_Waialeale": {
+      "overview": "Precipitation variations are very lopsided: a mostly quiet baseline regularly interrupted by sudden, large wet spikes.",
+      "pattern": "The record has no long-term directional shift or wave-like cycles visible by eye; it is defined by these isolated extreme events.",
+      "extremes": "The highest wet variations peak near +8.0 × 10⁻⁵ around 2006 and 2009; dry variations are much shallower, dropping to roughly −2.5 × 10⁻⁵ from time to time."
+    }
+  }
+}
